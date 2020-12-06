@@ -14,10 +14,14 @@
         "symfony/dotenv": "4.4.*",
         "symfony/flex": "^1.11",
         "symfony/framework-bundle": "4.4.*",
+        "symfony/security-bundle": "4.4.*",
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.24"
+        "symfony/maker-bundle": "^1.24",
+        "symfony/stopwatch": "^4.4",
+        "symfony/twig-bundle": "^4.4",
+        "symfony/web-profiler-bundle": "^4.4"
     },
     "config": {
         "preferred-install": {

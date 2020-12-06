@@ -1,9 +1,4 @@
 <?php
-/**
- * Criado por Vox Tecnologia.
- * User: Helio Cardoso <helio@voxtecnologia.com.br>
- * Date: 05/12/20
- */
 
 namespace App\Domain\Model;
 
@@ -21,5 +16,13 @@ class UsuarioAtribuicao
      * @ORM\Column(type="integer")
      */
     private int $id;
+
+    private Usuario $usuario;
+
+    private Task $task;
+
+    private \DateTime $dtAtribuicao;
+
+    private Status $status;
 
 }
