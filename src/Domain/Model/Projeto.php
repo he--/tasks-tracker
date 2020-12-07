@@ -27,7 +27,7 @@ class Projeto
      *
      * @ORM\Column(type="string", name="descricao")
      */
-    private string $descircao;
+    private string $descricao;
 
     /**
      * @var string
@@ -35,6 +35,13 @@ class Projeto
      * @ORM\Column(type="string", name="nome")
      */
     private string $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="gerente")
+     */
+    private string $gerente;
 
     /**
      * @var \DateTime
@@ -70,17 +77,17 @@ class Projeto
     /**
      * @return string
      */
-    public function getDescircao(): string
+    public function getDescricao(): string
     {
-        return $this->descircao;
+        return $this->descricao;
     }
 
     /**
      * @param string $descircao
      */
-    public function setDescircao(string $descircao): void
+    public function setDescircao(string $descricao): void
     {
-        $this->descircao = $descircao;
+        $this->descricao = $descricao;
     }
 
     /**
@@ -135,5 +142,21 @@ class Projeto
     {
         $task->setProjeto($this);
         $this->tasks->add($task);
+    }
+
+    /**
+     * @return string
+     */
+    public function getGerente(): string
+    {
+        return $this->gerente;
+    }
+
+    /**
+     * @param string $gerente
+     */
+    public function setGerente(string $gerente): void
+    {
+        $this->gerente = $gerente;
     }
 }

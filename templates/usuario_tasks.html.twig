@@ -1,0 +1,74 @@
+{% include 'header.html.twig' %}
+            <!-- End of Topbar -->
+
+
+            <div class="container-fluid">
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="m-0 font-weight-bold text-primary">{{ usuario.nome }}</h5>
+                        </div>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Email: {{usuario.email }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Descricao</th>
+                                            <th>projeto</th>
+                                            <th>Data Atribuicao</th>
+                                            <th>Status</th>
+                                            <th>Visualizar</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Descricao</th>
+                                            <th>projeto</th>
+                                            <th>Data Atribuicao</th>
+                                            <th>Status</th>
+                                            <th>Visualizar</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    {% for atribuicao in atribuicoes %}
+                                        {% if atribuicao.status.id == 2  %}
+                                            <tr bgcolor="#7fffd4" >
+                                        {% elseif atribuicao.status.id == 3 %}
+                                            <tr bgcolor="#ffb612" >
+                                        {% else %}
+                                            <tr bgcolor="aqua" >
+                                        {% endif %}
+                                            <td>{{ atribuicao.task.id }}</td>
+                                            <td>{{ atribuicao.task.nome }}</td>
+                                            <td>{{ atribuicao.task.projeto.nome }}</td>
+                                            <td>{{ atribuicao.dtAtribuicao| date("d/m/Y H:m") }}</td>
+                                            <td>{{ atribuicao.status.descricao }}</td>
+                                            <td>
+                                                <a href="visualizar/{{ atribuicao.id }}" class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                                <a href="/task/atribuir/{{ atribuicao.id }}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-30">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                                    <span class="text">Pegar</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                   {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+{% include 'footer.html.twig' %}

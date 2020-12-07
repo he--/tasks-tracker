@@ -6,6 +6,8 @@ namespace App\Controller;
 use App\Domain\Model\Projeto;
 use App\Domain\Model\Status;
 use App\Domain\Model\Task;
+use App\Domain\Model\Usuario;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,49 +20,43 @@ class TasksTrackerController extends AbstractController
 {
 
     /**
-     * @Route("/teste")
+     * @Route("/teste", name="task_teste")
      */
     public function teste(): Response
     {
 
         $doctrine = $this->get('doctrine');
 
-//        $projeto = new Projeto();
-//        $projeto->setNome('Grogu Tasks');
-//        $projeto->setDescircao('Projeto para criar um gerenciador de tasks simples');
-//        $projeto->setDtCadastro(new \DateTime());
+
+//        $status = $doctrine->getManager()->getRepository(Status::class)->find(1);
 //
-//        $doctrine->getManager()->persist($projeto);
-//        $doctrine->getManager()->flush();
+//        $task = new Task();
+//        $task->setStatus($status);
+//        $task->setNome("Criar Crud para os status");
+//        $task->setDescircao("Possibilitar o gerente da empresa adicionar um status para as tasks");
+//        $task->setDtCadastro(new \DateTime());
+//        $projeto->addTask($task);
+//        $task->setProjeto($projeto);
 
-        /**@var \App\Domain\Model\Projeto $projeto*/
-        $projeto = $doctrine->getManager()->getRepository(Projeto::class)->find(3);
-
-        foreach ($projeto->getTasks()->toArray() as $task) {
-            $taskVo = 'Nome '. $task->getNome().' Status '.$task->getStatus()->getDescricao();
-            dump($taskVo);
-        }
-
-        exit;
-
-
-        $status = $doctrine->getManager()->getRepository(Status::class)->find(1);
-
-        $task = new Task();
-        $task->setStatus($status);
-        $task->setNome("Criar Crud para os status");
-        $task->setDescircao("Possibilitar o gerente da empresa adicionar um status para as tasks");
-        $task->setDtCadastro(new \DateTime());
-        $projeto->addTask($task);
-        $task->setProjeto($projeto);
+//        $usuario = new Usuario();
+//        $usuario->setNome('Hélio Cardoso');
+//        $usuario->setEmail('heliosouza@gmail.com');
+//        $usuario->setRoles(['ROLE_ADMIM1']);
+//
 
 
-        $doctrine->getManager()->persist($task);
-        $doctrine->getManager()->flush();
 
-
-       $result =  $doctrine->getRepository(Task::class)->findAll();
+       $result =  $doctrine->getRepository(Usuario::class)->findAll();
        dump($result);exit;
+    }
+
+    /**
+     * @Route("/index", name="index")
+     * @IsGranted("ROLE_ADMIM")
+     */
+    public function index()
+    {
+        return $this->render('index.html.twig');
     }
 
 }

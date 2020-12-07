@@ -33,7 +33,7 @@ class Task
      *
      * @ORM\Column(type="string", name="descricao")
      */
-    private string $descircao;
+    private string $descricao;
 
     /**
      * @var string
@@ -62,7 +62,7 @@ class Task
      *
      * @ORM\Column(type="datetime", name="dt_conclusao", nullable=true)
      */
-    private \DateTime $dtConclusao;
+    private ?\DateTime $dtConclusao;
 
     /**
      * @return int
@@ -101,17 +101,17 @@ class Task
     /**
      * @return string
      */
-    public function getDescircao(): string
+    public function getDescricao(): string
     {
-        return $this->descircao;
+        return $this->descricao;
     }
 
     /**
      * @param string $descircao
      */
-    public function setDescircao(string $descircao): void
+    public function setDescircao(string $descricao): void
     {
-        $this->descircao = $descircao;
+        $this->descricao = $descricao;
     }
 
     /**
@@ -165,7 +165,7 @@ class Task
     /**
      * @return \DateTime
      */
-    public function getDtConclusao(): \DateTime
+    public function getDtConclusao():? \DateTime
     {
         return $this->dtConclusao;
     }
