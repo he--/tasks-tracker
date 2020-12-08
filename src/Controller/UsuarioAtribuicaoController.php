@@ -29,7 +29,7 @@ class UsuarioAtribuicaoController extends AbstractController
             ->findBy(['usuario' => $usuario->getId()])
         ;
 
-        return $this->render('usuario_tasks.html.twig',
+        return $this->render('usuario-tasks.html.twig',
             [
                 'atribuicoes' => $atribuicoes,
                 'usuario' => $usuario
