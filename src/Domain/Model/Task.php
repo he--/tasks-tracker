@@ -109,7 +109,7 @@ class Task
     /**
      * @param string $descircao
      */
-    public function setDescircao(string $descricao): void
+    public function setDescricao(string $descricao): void
     {
         $this->descricao = $descricao;
     }

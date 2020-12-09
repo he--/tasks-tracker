@@ -37,7 +37,7 @@
                                                 <a href="editar/{{ projeto.id }}" class="btn btn-success btn-circle btn-sm">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                <a href="excluir/{{ projeto.id }}" class="btn btn-danger btn-circle btn-sm">
+                                                <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>

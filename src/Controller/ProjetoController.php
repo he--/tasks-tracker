@@ -61,7 +61,7 @@ class ProjetoController extends AbstractController
     }
 
     /**
-     * @Route("/visualizar/{projeto}", name="visualizar_projetos")
+     * @Route("/visualizar/{projeto}", name="visualizar_projeto")
      * @ParamConverter("projeto", class="App\Domain\Model\Projeto")
      * @param Projeto $projeto
      */
