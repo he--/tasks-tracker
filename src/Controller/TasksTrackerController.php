@@ -18,49 +18,11 @@ class TasksTrackerController extends AbstractController
 {
 
     /**
-     * @Route("/teste")
+     * @Route("/olamundo/{nome}")
      */
-    public function teste(): Response
+    public function teste(string $nome): Response
     {
-
-        $doctrine = $this->get('doctrine');
-
-//        $projeto = new Projeto();
-//        $projeto->setNome('Grogu Tasks');
-//        $projeto->setDescircao('Projeto para criar um gerenciador de tasks simples');
-//        $projeto->setDtCadastro(new \DateTime());
-//
-//        $doctrine->getManager()->persist($projeto);
-//        $doctrine->getManager()->flush();
-
-        /**@var \App\Domain\Model\Projeto $projeto*/
-        $projeto = $doctrine->getManager()->getRepository(Projeto::class)->find(3);
-
-        foreach ($projeto->getTasks()->toArray() as $task) {
-            $taskVo = 'Nome '. $task->getNome().' Status '.$task->getStatus()->getDescricao();
-            dump($taskVo);
-        }
-
-        exit;
-
-
-        $status = $doctrine->getManager()->getRepository(Status::class)->find(1);
-
-        $task = new Task();
-        $task->setStatus($status);
-        $task->setNome("Criar Crud para os status");
-        $task->setDescircao("Possibilitar o gerente da empresa adicionar um status para as tasks");
-        $task->setDtCadastro(new \DateTime());
-        $projeto->addTask($task);
-        $task->setProjeto($projeto);
-
-
-        $doctrine->getManager()->persist($task);
-        $doctrine->getManager()->flush();
-
-
-       $result =  $doctrine->getRepository(Task::class)->findAll();
-       dump($result);exit;
+       return new Response('Bem vindo :'.$nome);
     }
 
 }
