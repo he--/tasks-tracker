@@ -96,6 +96,19 @@ class Usuario implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @return string
+     */
+    public function getRolesString(): string
+    {
+        $roles = '';
+        foreach ($this->roles as $role) {
+            $roles .= $role;
+        }
+
+        return $roles;
+    }
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;

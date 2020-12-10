@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Domain\Model\Usuario;
 use App\Domain\Model\UsuarioAtribuicao;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +34,24 @@ class UsuarioAtribuicaoController extends AbstractController
             [
                 'atribuicoes' => $atribuicoes,
                 'usuario' => $usuario
+            ]
+        );
+    }
+
+    /**
+     * @Route("/listar" , name="usuario_listar")
+     */
+    public function listarUsuarios()
+    {
+        $usuarios = $this
+            ->getDoctrine()
+            ->getRepository(Usuario::class)
+            ->findAll()
+        ;
+
+        return $this->render('usuarios-listar.html.twig',
+            [
+                'usuarios' => $usuarios,
             ]
         );
     }

@@ -82,4 +82,48 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/editar/{task}", name="editar_task", methods={"GET", "POST"})
+     * @ParamConverter("task", class="App\Domain\Model\Task")
+     */
+    public function editar(Task $task, Request $request)
+    {
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $task =  $form->getData();
+            $doctrine = $this->getDoctrine()->getManager();
+
+            $doctrine->persist($task);
+            $doctrine->flush();
+
+            $this->addFlash('success','Task Cadastrada com sucesso');
+
+            return $this->redirect('/usuario/tasks');
+        }
+
+        return $this->render('novo-task.html.twig', [
+            'form' => $form->createView(), 'projeto' => $task->getProjeto()
+        ]);
+    }
+
+    /**
+     * @Route("/deletar/{atribuicao}", name="deletar_task", methods={"GET", "POST"})
+     * @ParamConverter("atribuicao", class="App\Domain\Model\UsuarioAtribuicao")
+     */
+    public function deletar(UsuarioAtribuicao $atribuicao)
+    {
+        $doctrine = $this->getDoctrine()->getManager();
+        $task = $atribuicao->getTask();
+
+        $doctrine->remove($atribuicao);
+        $doctrine->remove($task);
+        $doctrine->flush();
+
+        $this->addFlash('success','Task Deletada com sucesso');
+
+        return $this->redirect('/usuario/tasks');
+    }
+
 }

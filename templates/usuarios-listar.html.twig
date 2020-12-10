@@ -1,0 +1,50 @@
+{% include 'header.html.twig' %}
+            <!-- End of Topbar -->
+            <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>roles</th>
+                                            <th>Password</th>
+                                            <th>Visualizar</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>roles</th>
+                                            <th>Password</th>
+                                            <th>Visualizar</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    {% for usuario in usuarios %}
+                                            <td>{{ usuario.id }}</td>
+                                            <td>{{ usuario.nome }}</td>
+                                            <td>{{ usuario.email }}</td>
+                                            <td>{{ usuario.rolesString }}</td>
+                                            <td> *********** </td>
+                                            <td>
+                                                <a href="visualizar" class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                   {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% include 'footer.html.twig' %}

@@ -17,7 +17,8 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Descricao</th>
+                                            <th>Nome</th>
+                                            <th>Descricao da task</th>
                                             <th>projeto</th>
                                             <th>Data Atribuicao</th>
                                             <th>Status</th>
@@ -27,7 +28,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Descricao</th>
+                                            <th>nome</th>
+                                            <th>Descricao da Task</th>
                                             <th>projeto</th>
                                             <th>Data Atribuicao</th>
                                             <th>Status</th>
@@ -45,20 +47,17 @@
                                         {% endif %}
                                             <td>{{ atribuicao.task.id }}</td>
                                             <td>{{ atribuicao.task.nome }}</td>
+                                            <td>{{ atribuicao.task.descricao }}</td>
                                             <td>{{ atribuicao.task.projeto.nome }}</td>
                                             <td>{{ atribuicao.dtAtribuicao| date("d/m/Y H:m") }}</td>
                                             <td>{{ atribuicao.status.descricao }}</td>
                                             <td>
-                                                <a href="visualizar/{{ atribuicao.id }}" class="btn btn-success btn-circle btn-sm">
+                                                <a href="{{ path('editar_task', {'task': atribuicao.task.id}) }}" class="btn btn-success btn-circle btn-sm">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                <a href="/task/atribuir/{{ atribuicao.id }}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-30">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                                    <span class="text">Pegar</span>
+                                                <a href="{{ path('deletar_task', {'atribuicao': atribuicao.id }) }}" class="btn btn-danger btn-circle btn-sm">
+                                                    <i class="fas fa-trash"></i>
                                                 </a>
-                                            </td>
                                         </tr>
                                    {% endfor %}
                                     </tbody>
