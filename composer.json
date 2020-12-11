@@ -17,6 +17,7 @@
         "symfony/flex": "^1.11",
         "symfony/form": "4.4.*",
         "symfony/framework-bundle": "4.4.*",
+        "symfony/monolog-bundle": "^3.6",
         "symfony/security-bundle": "4.4.*",
         "symfony/serializer": "4.4.*",
         "symfony/yaml": "4.4.*"

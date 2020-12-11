@@ -5,6 +5,7 @@ namespace App\Infrastructure\Controller;
 use App\Domain\Form\Type\ProjetoType;
 use App\Domain\Model\Projeto;
 use JMS\Serializer\SerializerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,6 +45,9 @@ class ProjetoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+
+            $logger = $this->get('logger.alias');
+            $logger->info('teste');
             $projeto =  $form->getData();
             $doctrine = $this->getDoctrine()->getManager();
 
