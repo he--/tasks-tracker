@@ -5,8 +5,7 @@ namespace App\Infrastructure\Controller;
 use App\Domain\Form\Type\ProjetoType;
 use App\Domain\Model\Projeto;
 use App\Domain\Services\ProjetoService;
-use JMS\Serializer\SerializerInterface;
-use Psr\Log\LoggerInterface;
+use App\Infrastructure\Repository\UsuarioAtribuicaoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactory;
@@ -40,6 +39,11 @@ class ProjetoController extends AbstractController
     public function listarProjetos()
     {
         $projetos = $this->projetoService->listar();
+        $numeroProjetos = $this->projetoService->getNumroDeProjetos();
+
+        $resultad = $this->getDoctrine()->getRepository(UsuarioAtribuicaoRepository::class)->groupUserAtribuicao();
+
+        dump($resultad);exit;
 
         return $this->render('lista-projetos.html.twig', ['projetos' => $projetos]);
     }

@@ -3,7 +3,7 @@
 namespace App\Domain\Model;
 
 /**
- * Class ProjetoRepositoryInterface
+ * class ProjetoRepositoryInterface
  * @package App\Domain\Model
  */
 interface ProjetoRepositoryInterface
@@ -11,4 +11,6 @@ interface ProjetoRepositoryInterface
     public function salvar(Projeto $projeto): void;
 
     public function listar(): array;
+
+    public function getNumeroProjetos(): int;
 }

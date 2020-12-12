@@ -7,6 +7,8 @@ use App\Domain\Model\Projeto;
 use App\Domain\Model\Status;
 use App\Domain\Model\Task;
 use App\Domain\Model\Usuario;
+use App\Domain\Services\ProjetoService;
+use App\Infrastructure\Repository\UsuarioRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,35 +22,18 @@ class TasksTrackerController extends AbstractController
 {
 
     /**
-     * @Route("/teste", name="task_teste")
+     * @var ProjetoService $projetosService;
      */
-    public function teste(): Response
+    public ProjetoService $projetoService;
+
+    public UsuarioRepository $usuarioRepository;
+
+    public function __construct(ProjetoService $projetoService, UsuarioRepository $usuarioRepository)
     {
-
-        $doctrine = $this->get('doctrine');
-
-
-//        $status = $doctrine->getManager()->getRepository(Status::class)->find(1);
-//
-//        $task = new Task();
-//        $task->setStatus($status);
-//        $task->setNome("Criar Crud para os status");
-//        $task->setDescircao("Possibilitar o gerente da empresa adicionar um status para as tasks");
-//        $task->setDtCadastro(new \DateTime());
-//        $projeto->addTask($task);
-//        $task->setProjeto($projeto);
-
-//        $usuario = new Usuario();
-//        $usuario->setNome('Hélio Cardoso');
-//        $usuario->setEmail('heliosouza@gmail.com');
-//        $usuario->setRoles(['ROLE_ADMIM1']);
-//
-
-
-
-       $result =  $doctrine->getRepository(Usuario::class)->findAll();
-       dump($result);exit;
+        $this->projetoService = $projetoService;
+        $this->usuarioRepository = $usuarioRepository;
     }
+
 
     /**
      * @Route("/index", name="index")
@@ -56,7 +41,17 @@ class TasksTrackerController extends AbstractController
      */
     public function index()
     {
-        return $this->render('index.html.twig');
+
+        $numeroProjetos = $this->projetoService->getNumroDeProjetos();
+        $numeroUsuario = $this->usuarioRepository->getNumeroUsers();
+
+        return $this->render(
+            'index.html.twig',
+            [
+                'numeroProjeto' => $numeroProjetos,
+                'numeroUsuarios' => $numeroUsuario
+            ]
+        );
     }
 
 }

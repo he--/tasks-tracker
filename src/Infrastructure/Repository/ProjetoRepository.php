@@ -36,4 +36,18 @@ class ProjetoRepository extends ServiceEntityRepository implements ProjetoReposi
     {
         return $this->findAll();
     }
+
+    /**
+     * @return int
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getNumeroProjetos(): int
+    {
+        $queryBuilder = $this->createQueryBuilder("pro");
+        $queryBuilder
+            ->select($queryBuilder->expr()->count("pro"));
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
 }
