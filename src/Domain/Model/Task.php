@@ -5,8 +5,10 @@ namespace App\Domain\Model;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Task
  * @ORM\Entity
  * @ORM\Table(name="task")
+ * @package App\Domain\Model
  */
 class Task
 {
@@ -33,7 +35,7 @@ class Task
      *
      * @ORM\Column(type="string", name="descricao")
      */
-    private string $descircao;
+    private string $descricao;
 
     /**
      * @var string
@@ -101,17 +103,17 @@ class Task
     /**
      * @return string
      */
-    public function getDescircao(): string
+    public function getDescricao(): string
     {
-        return $this->descircao;
+        return $this->descricao;
     }
 
     /**
-     * @param string $descircao
+     * @param string $descricao
      */
-    public function setDescircao(string $descircao): void
+    public function setDescricao(string $descricao): void
     {
-        $this->descircao = $descircao;
+        $this->descricao = $descricao;
     }
 
     /**

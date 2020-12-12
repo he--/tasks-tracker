@@ -2,17 +2,20 @@
 
 namespace App\Domain\Model;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Projeto
+ *
  * @ORM\Entity
- * @ORM\Table(name="Projeto")
+ * @ORM\Table(name="projeto")
+ * @package App\Domain\Model
  */
 class Projeto
 {
-
     /**
      * @var int
      *
@@ -25,9 +28,9 @@ class Projeto
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="descricao")
+     * @ORM\Column(type="string", name="descricao", nullable=false)
      */
-    private string $descircao;
+    private string $descricao;
 
     /**
      * @var string
@@ -37,12 +40,19 @@ class Projeto
     private string $nome;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
-     * @ORM\Column(type="datetime", name="dt_cadastro", nullable=false)
+     * @ORM\Column(type="datetime", name="dt_cadastro", )
+     *
      */
-    private \DateTime $dtCadastro;
+    private DateTime $dtCadastro;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="gerente")
+     */
+    private string $gerente;
 
     /**
      * @var ArrayCollection
@@ -70,17 +80,17 @@ class Projeto
     /**
      * @return string
      */
-    public function getDescircao(): string
+    public function getDescricao(): string
     {
-        return $this->descircao;
+        return $this->descricao;
     }
 
     /**
-     * @param string $descircao
+     * @param string $descricao
      */
-    public function setDescircao(string $descircao): void
+    public function setDescricao(string $descricao): void
     {
-        $this->descircao = $descircao;
+        $this->descricao = $descricao;
     }
 
     /**
@@ -100,19 +110,35 @@ class Projeto
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
-    public function getDtCadastro(): \DateTime
+    public function getDtCadastro(): string
     {
         return $this->dtCadastro;
     }
 
     /**
-     * @param \DateTime $dtCadastro
+     * @param string $dtCadastro
      */
-    public function setDtCadastro(\DateTime $dtCadastro): void
+    public function setDtCadastro(DateTime $dtCadastro): void
     {
         $this->dtCadastro = $dtCadastro;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGerente(): string
+    {
+        return $this->gerente;
+    }
+
+    /**
+     * @param string $gerente
+     */
+    public function setGerente(string $gerente): void
+    {
+        $this->gerente = $gerente;
     }
 
     /**

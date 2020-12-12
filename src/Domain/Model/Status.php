@@ -5,8 +5,10 @@ namespace App\Domain\Model;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Status
  * @ORM\Entity
  * @ORM\Table(name="status")
+ * @package App\Domain\Model
  */
 class Status
 {
