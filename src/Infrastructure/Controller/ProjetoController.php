@@ -39,11 +39,6 @@ class ProjetoController extends AbstractController
     public function listarProjetos()
     {
         $projetos = $this->projetoService->listar();
-        $numeroProjetos = $this->projetoService->getNumroDeProjetos();
-
-        $resultad = $this->getDoctrine()->getRepository(UsuarioAtribuicaoRepository::class)->groupUserAtribuicao();
-
-        dump($resultad);exit;
 
         return $this->render('lista-projetos.html.twig', ['projetos' => $projetos]);
     }
