@@ -129,7 +129,7 @@ class Usuario implements UserInterface
 
     public function setPassword(string $password)
     {
-       $this->$password = $password;
+       $this->password = $password;
     }
 
     /**
