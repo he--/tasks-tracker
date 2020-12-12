@@ -52,7 +52,7 @@ class TasksTrackerController extends AbstractController
 
     /**
      * @Route("/index", name="index")
-     * @IsGranted("ROLE_ADMIM")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index()
     {
