@@ -4,9 +4,12 @@ namespace App\Infrastructure\Controller;
 
 use App\Domain\Form\Type\ProjetoType;
 use App\Domain\Model\Projeto;
+use App\Domain\Services\ProjetoService;
 use JMS\Serializer\SerializerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -17,11 +20,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class ProjetoController extends AbstractController
 {
 
-    private $serializer;
+    /**
+     * @var ProjetoService
+     */
+    private ProjetoService $projetoService;
 
-    public function __construct(SerializerInterface $serializer)
+    /**
+     * ProjetoController constructor.
+     * @param ProjetoService $projetoService
+     */
+    public function __construct(ProjetoService $projetoService)
     {
-        $this->serializer = $serializer;
+        $this->projetoService = $projetoService;
     }
 
     /**
@@ -84,11 +94,7 @@ class ProjetoController extends AbstractController
 
         if ($form->isSubmitted()) {
             $projeto =  $form->getData();
-            $doctrine = $this->getDoctrine()->getManager();
-
-            $doctrine->persist($projeto);
-            $doctrine->flush();
-
+            $this->projetoService->salvar($projeto);
             $this->addFlash('success','Projeto Salvo com sucesso');
 
             return $this->redirectToRoute('listar_projetos');
