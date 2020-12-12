@@ -39,7 +39,7 @@ class ProjetoController extends AbstractController
      */
     public function listarProjetos()
     {
-        $projetos = $this->get('doctrine')->getRepository(Projeto::class)->findAll();
+        $projetos = $this->projetoService->listar();
 
         return $this->render('lista-projetos.html.twig', ['projetos' => $projetos]);
     }
@@ -58,11 +58,9 @@ class ProjetoController extends AbstractController
 
             $logger = $this->get('logger.alias');
             $logger->info('teste');
-            $projeto =  $form->getData();
-            $doctrine = $this->getDoctrine()->getManager();
 
-            $doctrine->persist($projeto);
-            $doctrine->flush();
+            $projeto =  $form->getData();
+            $this->projetoService->salvar($projeto);
 
             $this->addFlash('success','Projeto Salvo com sucesso');
 

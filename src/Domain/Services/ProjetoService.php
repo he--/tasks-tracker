@@ -33,4 +33,12 @@ class ProjetoService
     {
         $this->projetoRepository->salvar($projeto);
     }
+
+    /**
+     * @return array
+     */
+    public function listar(): array
+    {
+        return $this->projetoRepository->listar();
+    }
 }

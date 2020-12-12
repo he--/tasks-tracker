@@ -28,4 +28,12 @@ class ProjetoRepository extends ServiceEntityRepository implements ProjetoReposi
         $this->getEntityManager()->persist($projeto);
         $this->getEntityManager()->flush();
     }
+
+    /**
+     * @return array
+     */
+    public function listar(): array
+    {
+        return $this->findAll();
+    }
 }

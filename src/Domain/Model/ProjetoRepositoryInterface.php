@@ -9,4 +9,6 @@ namespace App\Domain\Model;
 interface ProjetoRepositoryInterface
 {
     public function salvar(Projeto $projeto): void;
+
+    public function listar(): array;
 }
