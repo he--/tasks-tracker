@@ -8,6 +8,7 @@ use App\Domain\Model\Status;
 use App\Domain\Model\Task;
 use App\Domain\Model\Usuario;
 use App\Domain\Services\ProjetoService;
+use App\Infrastructure\Repository\TaskRepository;
 use App\Infrastructure\Repository\UsuarioRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,11 +28,13 @@ class TasksTrackerController extends AbstractController
     public ProjetoService $projetoService;
 
     public UsuarioRepository $usuarioRepository;
+    public TaskRepository $taskRepository;
 
-    public function __construct(ProjetoService $projetoService, UsuarioRepository $usuarioRepository)
+    public function __construct(ProjetoService $projetoService, UsuarioRepository $usuarioRepository, TaskRepository $taskRepository)
     {
         $this->projetoService = $projetoService;
         $this->usuarioRepository = $usuarioRepository;
+        $this->taskRepository = $taskRepository;
     }
 
 
@@ -44,12 +47,16 @@ class TasksTrackerController extends AbstractController
 
         $numeroProjetos = $this->projetoService->getNumroDeProjetos();
         $numeroUsuario = $this->usuarioRepository->getNumeroUsers();
+        $numeroTasks = $this->taskRepository->getNumeroTasks();
+        $status = $this->taskRepository->getStatus();
 
         return $this->render(
             'index.html.twig',
             [
                 'numeroProjeto' => $numeroProjetos,
-                'numeroUsuarios' => $numeroUsuario
+                'numeroUsuarios' => $numeroUsuario,
+                'numeroTasks' => $numeroTasks,
+                "status" => $status
             ]
         );
     }

@@ -28,7 +28,7 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome', TextType::class, ['label' => false, 'attr' => ['placeholder' => 'Nome do Projeto ']])
+            ->add('nome', TextType::class, ['label' => false, 'attr' => ['placeholder' => 'Nome da Tarefa']])
             ->add('descricao', TextareaType::class)
             ->add('dtCadastro', DateType::class, [
                 'label' => 'Data de Cadastro',
@@ -37,6 +37,7 @@ class TaskType extends AbstractType
             ])
             ->add('dtConclusao', DateType::class, [
                 'label' => 'Data de Conclusao',
+                'placeholder' => 'Select a value',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker', 'required' => false],
             ])
