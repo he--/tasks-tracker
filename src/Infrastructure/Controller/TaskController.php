@@ -7,6 +7,7 @@ use App\Domain\Model\Projeto;
 use App\Domain\Model\Status;
 use App\Domain\Model\Task;
 use App\Domain\Model\UsuarioAtribuicao;
+use App\Domain\Services\TaskService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,13 +20,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
 
+
     /**
-     * @Route("/usuario/{id}")
+     * @var TaskService
+     */
+    private TaskService $taskService;
+
+    /**
+     * ProjetoController constructor.
+     * @param TaskService $taskService
+     */
+    public function __construct(TaskService $taskService)
+    {
+        $this->taskService = $taskService;
+    }
+
+    /**
+     * @Route("/listar/{id}")
      */
     public function listTasks()
     {
-
-
+        $this->taskService->listar();
     }
 
     /**
@@ -42,7 +57,6 @@ class TaskController extends AbstractController
         $usuarioTask->setUsuario($user);
         $usuarioTask->setDtAtribuicao(new \DateTime());
         $usuarioTask->setTask($task);
-
         $task->setStatus($status);
 
         $this->getDoctrine()->getManager()->persist($status);
@@ -67,10 +81,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted()) {
             $task =  $form->getData();
             $task->setProjeto($projeto);
-            $doctrine = $this->getDoctrine()->getManager();
-
-            $doctrine->persist($task);
-            $doctrine->flush();
+            $this->taskService->salvar($task);
 
             $this->addFlash('success','Task Cadastrada com sucesso');
 
@@ -93,14 +104,11 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted()) {
             $task =  $form->getData();
-            $doctrine = $this->getDoctrine()->getManager();
+            $this->taskService->salvar($task);
 
-            $doctrine->persist($task);
-            $doctrine->flush();
+            $this->addFlash('success','Task atualizada com sucesso');
 
-            $this->addFlash('success','Task Cadastrada com sucesso');
-
-            return $this->redirect('/usuario/tasks');
+            return $this->redirect('/projetos/listar');
         }
 
         return $this->render('novo-task.html.twig', [
@@ -109,7 +117,24 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/deletar/{atribuicao}", name="deletar_task", methods={"GET", "POST"})
+     * @Route("/deletar/{id}", name="deletar_task", methods={"GET", "POST"})
+     * @ParamConverter("id", class="App\Domain\Model\Task")
+     */
+    public function deletarProjetoTask(Task $id)
+    {
+        $doctrine = $this->getDoctrine()->getManager();
+
+        $this->taskService->delete($id);
+
+        $doctrine->flush();
+
+        $this->addFlash('success','Task Deletada com sucesso');
+
+        return $this->redirect('/projetos/listar');
+    }
+
+    /**
+     * @Route("/deletar_atribuicao/{atribuicao}", name="deletar_task_atribuicao", methods={"GET", "POST"})
      * @ParamConverter("atribuicao", class="App\Domain\Model\UsuarioAtribuicao")
      */
     public function deletar(UsuarioAtribuicao $atribuicao)
