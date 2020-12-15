@@ -33,7 +33,7 @@ class Task
      *
      * @ORM\Column(type="string", name="descricao")
      */
-    private string $descircao;
+    private string $descricao;
 
     /**
      * @var string
@@ -107,11 +107,11 @@ class Task
     }
 
     /**
-     * @param string $descircao
+     * @param string $descricao
      */
-    public function setDescircao(string $descircao): void
+    public function setDescricao(string $descricao): void
     {
-        $this->descircao = $descircao;
+        $this->descricao = $descricao;
     }
 
     /**

@@ -18,11 +18,42 @@ class TasksTrackerController extends AbstractController
 {
 
     /**
-     * @Route("/olamundo/{nome}")
+     * @Route("/teste/{nome}")
      */
     public function teste(string $nome): Response
     {
-       return new Response('Bem vindo :'.$nome);
+        $projeto = new Projeto();
+        $projeto->setNome($nome);
+        $projeto->setDescricao("hehhehe");
+        $projeto->setDtCadastro(new \DateTime());
+        $projeto->setGerente("Otto");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($projeto);
+
+
+        $task = new Task();
+        $task ->setNome("Fazer Crud");
+        $task ->setDescricao("Construir");
+        $task ->setProjeto($projeto);
+        $task ->setDtCadastro(new \DateTime());
+        $task ->setDtConclusao(new \DateTime());
+
+//        $status = new Status();
+//        $status->setDescricao("Status");
+//        $em->persist($status);
+
+//        $status = $em->getRepository(Status::class)->find(1);
+//
+//        $task->setStatus($status);
+        $em->persist($task);
+        $em->flush();
+
+        $projeto = $em->getRepository(Projeto::class)->findAll();
+
+        dump($projeto);exit;
+
+        return new Response('Bem vindo :'.$nome);
     }
 
 }
