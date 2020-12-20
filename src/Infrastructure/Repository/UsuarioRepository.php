@@ -47,4 +47,29 @@ class UsuarioRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    /**
+     * @param Usuario $projeto
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function salvar(Usuario $usuario): void
+    {
+        $this->getEntityManager()->persist($usuario);
+        $this->getEntityManager()->flush();
+    }
+    
+    /**
+     * @return array
+     */
+    public function listar(): array
+    {
+        return $this->findAll();
+    }
+    
+    public function remover(Usuario $usuario): void
+    {
+        $this->getEntityManager()->remove($usuario);
+        $this->getEntityManager()->flush();
+    }
 }

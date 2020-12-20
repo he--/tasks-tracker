@@ -1,0 +1,30 @@
+{% include 'header.html.twig' %}
+
+    <div class="container-fluid">
+        <h1 class="h3 mb-4 text-gray-800">Cadastrar Novo Usuário</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_row(form.nome) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_row(form.email) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_row(form.password) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_row(form.roles) }}
+            </div>
+        </div>
+
+        <input class="btn btn-success btn-icon-split" type="submit"/>
+    </div>
+
+{% include 'footer.html.twig' %}
