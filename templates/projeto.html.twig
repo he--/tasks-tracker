@@ -28,7 +28,7 @@
                                             <th>Data Cadastro</th>
                                             <th>Data Conclusao</th>
                                             <th>Status</th>
-                                            <th>Visualizar</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -39,7 +39,7 @@
                                             <th>Data Cadastro</th>
                                             <th>Data Conclusao</th>
                                             <th>Status</th>
-                                            <th>Visualizar</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -56,8 +56,8 @@
                                             <td>{{ task.dtConclusao ? task.dtConclusao| date("d/m/Y H:m") : null }}</td>
                                             <td>{{ task.status.descricao}}</td>
                                             <td>
-                                                <a href="{{ path('editar_task', {'task': task.id}) }}" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
+                                                <a href="{{ path('editar_task', {'task': task.id}) }}" class="btn btn-success btn-circle btn-sm" title="Editar">
+                                                    <i class="fas fa-pen"></i>
                                                 </a>
                                                 <a href="/task/atribuir/{{ task.id }}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-30">
@@ -76,14 +76,14 @@
                     </div>
                 <a href="{{ path('listar_projetos') }}" class="btn btn-success btn-icon-split">
                                                             <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
+                                                                <i class="fas fa-chevron-circle-left"></i>
                                                             </span>
                     <span class="text">Voltar</span>
                 </a>
 
                 <a href="{{ path('cadastrar_task', {'projeto': projeto.id}) }}" class="btn btn-info btn-icon-split">
                                                             <span class="icon text-white-50">
-                                                                <i class="fas fa-info-circle"></i>
+                                                                <i class="fas fa-plus"></i>
                                                             </span>
                     <span class="text">Cadastrar nova Task</span>
                 </a>

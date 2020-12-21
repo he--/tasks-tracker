@@ -14,7 +14,7 @@
                                             <th>Descricao</th>
                                             <th>Gerente</th>
                                             <th>Data Cadastro</th>
-                                            <th></th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -23,7 +23,7 @@
                                             <th>Descricao</th>
                                             <th>Gerente</th>
                                             <th>Data Cadastro</th>
-                                            <th></th>
+                                            <th>Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -34,11 +34,11 @@
                                             <td>{{ projeto.gerente }}</td>
                                             <td>{{ projeto.dtCadastro| date("m/d/Y") }}</td>
                                             <td>
-                                                <a href="editar/{{ projeto.id }}" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
+                                                <a href="editar/{{ projeto.id }}" class="btn btn-success btn-circle btn-sm" title="Editar">
+                                                    <i class="fas fa-pen"></i>
                                                 </a>
-                                                <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}" class="btn btn-danger btn-circle btn-sm">
-                                                    <i class="fas fa-trash"></i>
+                                                <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}" class="btn btn-success btn-circle btn-sm" title="Visualizar">
+                                                    <i class="fas fa-search"></i>
                                                 </a>
                                             </td>
                                         </tr>
