@@ -36,4 +36,19 @@ class ProjetoRepository extends ServiceEntityRepository implements ProjetoReposi
     {
         return $this->findAll();
     }
+    
+    public function findByStatus($value)
+    {
+        return $this->createQueryBuilder('u')
+        ->select('u')
+         ->innerJoin('u.tasks', 't')
+         ->innerJoin('t.status', 'i')
+         ->Where('i.id = :status')
+         ->setParameter('status', 2)
+        ->andWhere('u.id = :id')
+        ->setParameter('id', 32)
+        ->getQuery()
+        ->getSingleResult()
+        ;
+    }
 }

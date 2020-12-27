@@ -102,4 +102,20 @@ class ProjetoController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+    /**
+     * @Route("/pesquisar", name="pesquisar_projetos")
+     */
+    public function findByStatus()
+    {
+        $value = 'juan';
+        $projeto = $this->projetoService->findByStatus($value);
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        
+        $output->writeln('erro');
+        return $this->render('projeto.html.twig', ['projeto' => $projeto]);
+        //return $this->render('lista-projetos.html.twig', ['projetos' => $projetos]);
+    }
+    
+    
 }

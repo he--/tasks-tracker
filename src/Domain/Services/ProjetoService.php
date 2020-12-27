@@ -41,4 +41,9 @@ class ProjetoService
     {
         return $this->projetoRepository->listar();
     }
+    
+    public function findByStatus($value)
+    {
+        return $this->projetoRepository->findByStatus($value);
+    }
 }
