@@ -12,12 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Services\TaskService;
 
 /**
  * @Route("/task")
  */
 class TaskController extends AbstractController
 {
+    
+    private TaskService $taskService;
+    
+    public function __construct(TaskService $taskService)
+    {
+        $this->taskService = $taskService;
+    }
 
     /**
      * @Route("/usuario/{id}")
@@ -67,11 +75,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted()) {
             $task =  $form->getData();
             $task->setProjeto($projeto);
-            $doctrine = $this->getDoctrine()->getManager();
-
-            $doctrine->persist($task);
-            $doctrine->flush();
-
+            $this->taskService->salvar($task);
             $this->addFlash('success','Task Cadastrada com sucesso');
 
             return $this->redirect('/projetos/visualizar/'.$projeto->getId());
@@ -93,12 +97,9 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted()) {
             $task =  $form->getData();
-            $doctrine = $this->getDoctrine()->getManager();
-
-            $doctrine->persist($task);
-            $doctrine->flush();
-
-            $this->addFlash('success','Task Cadastrada com sucesso');
+            
+            $this->taskService->salvar($task);
+            $this->addFlash('success','Task Alterada com sucesso');
 
             return $this->redirect('/usuario/tasks');
         }
