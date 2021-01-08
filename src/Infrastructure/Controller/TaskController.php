@@ -48,7 +48,8 @@ class TaskController extends AbstractController
         $tasks = $this->taskService->listarPorProjeto($projeto);
 
         return $this->render('lista-tasks.html.twig', [
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'projeto' => $projeto
         ]);
     }
 
