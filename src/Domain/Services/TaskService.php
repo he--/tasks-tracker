@@ -2,6 +2,7 @@
 
 namespace App\Domain\Services;
 
+use App\Domain\Model\Projeto;
 use App\Domain\Model\Task;
 use App\Domain\Repository\TaskRepositoryInterface;
 
@@ -40,5 +41,10 @@ class TaskService
     public function listar(): array
     {
         return $this->taskRepository->listar();
+    }
+
+    public function listarPorProjeto(Projeto $projeto): array
+    {
+        return $this->taskRepository->listarPorProjeto($projeto);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\Model\Projeto;
 use App\Domain\Model\Task;
 use App\Domain\Repository\TaskRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -35,5 +36,15 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
     public function listar(): array
     {
         return $this->findAll();
+    }
+
+    public function listarPorProjeto(Projeto $projeto)
+    {
+        return $this->createQueryBuilder('t')
+                ->andWhere('t.projeto = :projeto')
+                ->setParameter('projeto', $projeto->getId())
+                ->orderBy('t.id', 'ASC')
+                ->getQuery()
+                ->getResult();
     }
 }

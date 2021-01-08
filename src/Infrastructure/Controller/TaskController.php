@@ -39,6 +39,20 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @Route("/projeto/{projeto}", name="task_projeto_listar")
+     * @ParamConverter("projeto", class="App\Domain\Model\Projeto")
+     * @param Projeto $projeto
+     */
+    public function listarTasksPorProjeto(Projeto $projeto)
+    {
+        $tasks = $this->taskService->listarPorProjeto($projeto);
+
+        return $this->render('lista-tasks.html.twig', [
+            'tasks' => $tasks
+        ]);
+    }
+
+    /**
      * @Route("/atribuir/{task}" , name="atribuir_task")
      * @ParamConverter("task", class="App\Domain\Model\Task")
      */
@@ -93,7 +107,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/editar/{task}", name="editar_task", methods={"GET", "POST"})
+     * @Route("/editar/{task}", name="task_editar", methods={"GET", "POST"})
      * @ParamConverter("task", class="App\Domain\Model\Task")
      */
     public function editar(Task $task, Request $request)

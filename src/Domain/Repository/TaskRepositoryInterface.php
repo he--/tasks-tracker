@@ -2,6 +2,7 @@
 
 namespace App\Domain\Repository;
 
+use \App\Domain\Model\Projeto;
 use \App\Domain\Model\Task;
 
 /**
@@ -13,4 +14,6 @@ interface TaskRepositoryInterface
     public function salvar(Task $task): void;
 
     public function listar(): array;
+
+    public function listarPorProjeto(Projeto $projeto);
 }
