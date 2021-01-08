@@ -32,12 +32,16 @@
                                     </tfoot>
                                     <tbody>
                                     {% for task in tasks %}
-                                        {% if task.status.id == 2  %}
-                                            <tr bgcolor="#7fffd4" >
+                                        {% if task.status.id == 1  %}
+                                            <tr bgcolor="#ff9" >
+                                        {% elseif task.status.id == 2  %}
+                                            <tr bgcolor="#6ff" >
                                         {% elseif task.status.id == 3 %}
-                                            <tr bgcolor="#ffb612" >
+                                            <tr bgcolor="#f66" >
+                                        {% elseif task.status.id == 4  %}
+                                            <tr bgcolor="#6f6" >
                                         {% else %}
-                                            <tr bgcolor="aqua" >
+                                            <tr>
                                         {% endif %}
                                             <td>{{ task.nome }}</td>
                                             <td>{{ task.descricao }}</td>
