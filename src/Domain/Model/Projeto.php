@@ -5,8 +5,6 @@ namespace App\Domain\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Monolog\Logger;
-use Psr\Log\LoggerInterface;
 
 /**
  * @ORM\Entity

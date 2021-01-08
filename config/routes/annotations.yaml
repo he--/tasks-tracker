@@ -1,5 +1,5 @@
 controllers:
-    resource: ../../src/Infrastructure/Controller/
+    resource: ../../src/Application/Controller/
     type: annotation
 
 kernel:

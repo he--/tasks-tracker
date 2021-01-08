@@ -2,12 +2,11 @@
 
 namespace App\Domain\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="usuario_atribuicao")
+ * @ORM\Entity()
+ * @ORM\Table("usuario_atribuicao")
  */
 class UsuarioAtribuicao
 {

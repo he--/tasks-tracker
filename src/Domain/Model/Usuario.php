@@ -2,13 +2,13 @@
 
 namespace App\Domain\Model;
 
-use App\Infrastructure\Repository\UsuarioRepository;
+use App\Infrastructure\Repository\UsuarioRepositoryImpl;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UsuarioRepository::class)
+ * @ORM\Entity(repositoryClass=UsuarioRepositoryImpl::class)
  */
 class Usuario implements UserInterface
 {

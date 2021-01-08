@@ -1,22 +1,37 @@
 <?php
 
-namespace App\Infrastructure\Controller;
+namespace App\Application\Controller;
 
 
 use App\Domain\Model\Usuario;
 use App\Domain\Model\UsuarioAtribuicao;
+use App\Domain\Service\UsuarioService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class UsuarioAtribuicaoController
+ * Class UsuarioController
  * @Route("/usuario")
  * @package App\Controller
  */
-class UsuarioAtribuicaoController extends AbstractController
+class UsuarioController extends AbstractController
 {
+
+    /**
+     * @var UsuarioService
+     */
+    private UsuarioService $usuarioService;
+
+    /**
+     * UsuarioController constructor.
+     * @param UsuarioService $usuarioService
+     */
+    public function __construct(UsuarioService $usuarioService)
+    {
+        $this->usuarioService = $usuarioService;
+    }
 
     /**
      * @Route("/tasks" , name="usuario_tasks")
@@ -24,11 +39,7 @@ class UsuarioAtribuicaoController extends AbstractController
     public function listarAtribuicoes()
     {
         $usuario = $this->getUser();
-        $atribuicoes = $this
-            ->getDoctrine()
-            ->getRepository(UsuarioAtribuicao::class)
-            ->findBy(['usuario' => $usuario->getId()])
-        ;
+        $atribuicoes = $this->usuarioService.atribuicoes($usuario.getId());
 
         return $this->render('usuario-tasks.html.twig',
             [

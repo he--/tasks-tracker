@@ -1,46 +1,46 @@
 {% include 'header.html.twig' %}
 
-    <div class="container-fluid">
-        <h1 class="h3 mb-4 text-gray-800">Cadastrar Nova Task</h1>
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col-sm-5">
-                {{ form_row(form.nome) }}
-            </div>
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Cadastrar Nova Task</h1>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm-5">
+            {{ form_row(form.nome) }}
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                {{ form_row(form.descricao) }}
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            {{ form_row(form.descricao) }}
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                {{ form_row(form.dtCadastro) }}
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            {{ form_row(form.dtCadastro) }}
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                {{ form_row(form.dtConclusao, ) }}
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            {{ form_row(form.dtConclusao, ) }}
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                {{ form_row(form.status) }}
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            {{ form_row(form.status) }}
         </div>
-        <button class="btn btn-info btn-icon-split" type="submit">
+    </div>
+    <a href="{{ path('listar_projetos') }}" class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="text">Voltar</span>
+    </a>
+    <button class="btn btn-info btn-icon-split" type="submit">
             <span class="icon text-white-50">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </span>
-            <span class="text">Cadastrar</span>
-        </button>
-        <a href="{{ path('listar_projetos') }}" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-            <span class="text">Voltar</span>
-        </a>
-    </div>
-    </div>
+                <i class="fas fa-plus"></i>
+            </span>
+        <span class="text">Cadastrar</span>
+    </button>
+</div>
+</div>
 
 {% include 'footer.html.twig' %}

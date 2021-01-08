@@ -12,7 +12,7 @@
 namespace App\Infrastructure\Command;
 
 use App\Domain\Model\Usuario;
-use App\Infrastructure\Repository\UsuarioRepository;
+use App\Infrastructure\Repository\UsuarioRepositoryImpl;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,7 +38,7 @@ class AddUserCommand extends Command
     private $entityManager;
     private $users;
 
-    public function __construct(EntityManagerInterface $em, UsuarioRepository $users)
+    public function __construct(EntityManagerInterface $em, UsuarioRepositoryImpl $users)
     {
         parent::__construct();
 

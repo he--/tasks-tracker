@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Controller\Action;
+namespace App\Application\Controller\Action;
 
 use App\Domain\Model\Usuario;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,7 +10,7 @@ use JMS\Serializer\SerializerInterface;
 
 /**
  * Class PostAction
- * @package App\Infrastructure\Controller\Action
+ * @package App\Application\Controller\Action
  * @Route(name="post_action", path="/api/post", methods={"POST"})
  */
 class PostAction

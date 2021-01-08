@@ -1,95 +1,100 @@
 {% include 'header.html.twig' %}
-            <!-- End of Topbar -->
+<!-- End of Topbar -->
 
 
-            <div class="container-fluid">
+<div class="container-fluid">
 
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-primary">{{ projeto.nome }}</h5>
-                        </div>
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Descrição: {{projeto.descricao }}</h6>
-                        </div>
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerente: {{ projeto.gerente }}</h6>
-                        </div>
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data de Cadastro: {{ projeto.dtCadastro| date("d/m/Y H:m") }}</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>projeto</th>
-                                            <th>Data Cadastro</th>
-                                            <th>Data Conclusao</th>
-                                            <th>Status</th>
-                                            <th>Visualizar</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>projeto</th>
-                                            <th>Data Cadastro</th>
-                                            <th>Data Conclusao</th>
-                                            <th>Status</th>
-                                            <th>Visualizar</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    {% for task in projeto.tasks %}
-                                        {% if task.status.id == 2  %}
-                                            <tr bgcolor="#7fffd4" >
-                                        {% else %}
-                                            <tr bgcolor="aqua" >
-                                        {% endif %}
-                                            <td>{{ task.nome }}</td>
-                                            <td>{{ task.descricao }}</td>
-                                            <td>{{ task.projeto.nome }}</td>
-                                            <td>{{ task.dtCadastro| date("d/m/Y H:m") }}</td>
-                                            <td>{{ task.dtConclusao ? task.dtConclusao| date("d/m/Y H:m") : null }}</td>
-                                            <td>{{ task.status.descricao}}</td>
-                                            <td>
-                                                <a href="{{ path('editar_task', {'task': task.id}) }}" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                                <a href="/task/atribuir/{{ task.id }}" class="btn btn-primary btn-icon-split">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">{{ projeto.nome }}</h5>
+        </div>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Descrição: {{ projeto.descricao }}</h6>
+        </div>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Gerente: {{ projeto.gerente }}</h6>
+        </div>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data de
+                Cadastro: {{ projeto.dtCadastro| date("d/m/Y H:m") }}</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>projeto</th>
+                        <th>Data Cadastro</th>
+                        <th>Data Conclusao</th>
+                        <th>Status</th>
+                        <th>Visualizar</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>projeto</th>
+                        <th>Data Cadastro</th>
+                        <th>Data Conclusao</th>
+                        <th>Status</th>
+                        <th>Visualizar</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for task in projeto.tasks %}
+                        {% if task.status.id == 2 %}
+                            <tr bgcolor="#7fffd4">
+                        {% else %}
+                            <tr bgcolor="aqua" >
+                        {% endif %}
+                        <td>{{ task.nome }}</td>
+                        <td>{{ task.descricao }}</td>
+                        <td>{{ task.projeto.nome }}</td>
+                        <td>{{ task.dtCadastro| date("d/m/Y H:m") }}</td>
+                        <td>{{ task.dtConclusao ? task.dtConclusao| date("d/m/Y H:m") : null }}</td>
+                        <td>{{ task.status.descricao }}</td>
+                        <td>
+                            <a href="{{ path('editar_task', {'task': task.id}) }}"
+                               class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-30">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                                <span class="text">Editar</span>
+                            </a>
+                            <a href="/task/atribuir/{{ task.id }}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-30">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                                    <span class="text">Pegar</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                   {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-                <a href="{{ path('listar_projetos') }}" class="btn btn-success btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                    <span class="text">Voltar</span>
-                </a>
-
-                <a href="{{ path('cadastrar_task', {'projeto': projeto.id}) }}" class="btn btn-info btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </span>
-                    <span class="text">Cadastrar nova Task</span>
-                </a>
-
-                </div>
-
+                                <span class="text">Pegar</span>
+                            </a>
+                        </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
+        </div>
+
+    </div>
+    <a href="{{ path('listar_projetos') }}" class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="text">Voltar</span>
+    </a>
+
+    <a href="{{ path('cadastrar_task', {'projeto': projeto.id}) }}" class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-plus"></i>
+        </span>
+        <span class="text">Cadastrar nova Task</span>
+    </a>
+
+</div>
+
+</div>
 
 {% include 'footer.html.twig' %}

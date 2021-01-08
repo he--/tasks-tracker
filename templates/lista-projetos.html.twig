@@ -1,57 +1,65 @@
 {% include 'header.html.twig' %}
 
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de Projetos em Andamento</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>Gerente</th>
-                                            <th>Data Cadastro</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>Gerente</th>
-                                            <th>Data Cadastro</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    {% for projeto in projetos %}
-                                        <tr>
-                                            <td>{{ projeto.nome }}</td>
-                                            <td>{{ projeto.descricao }}</td>
-                                            <td>{{ projeto.gerente }}</td>
-                                            <td>{{ projeto.dtCadastro| date("m/d/Y") }}</td>
-                                            <td>
-                                                <a href="editar/{{ projeto.id }}" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                                <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}" class="btn btn-danger btn-circle btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Lista de Projetos em Andamento</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>Gerente</th>
+                        <th>Data Cadastro</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>Gerente</th>
+                        <th>Data Cadastro</th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for projeto in projetos %}
+                        <tr>
+                            <td>{{ projeto.nome }}</td>
+                            <td>{{ projeto.descricao }}</td>
+                            <td>{{ projeto.gerente }}</td>
+                            <td>{{ projeto.dtCadastro| date("m/d/Y") }}</td>
+                            <td>
+                                <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}"
+                                   class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info"></i>
+                                    </span>
+                                    <span class="text">Detalhes</span>
+                                </a>
 
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                <a href="editar/{{ projeto.id }}" class="btn btn-info btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span class="text">Editar</span>
+                                </a>
+                            </td>
+                        </tr>
 
-                </div>
-
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
 
 {% include 'footer.html.twig' %}

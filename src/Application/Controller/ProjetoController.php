@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Infrastructure\Controller;
+namespace App\Application\Controller;
 
 use App\Domain\Form\Type\ProjetoType;
 use App\Domain\Model\Projeto;
-use App\Domain\Services\ProjetoService;
-use JMS\Serializer\SerializerInterface;
-use Psr\Log\LoggerInterface;
+use App\Domain\Service\ProjetoService;
+use App\Infrastructure\Repository\UsuarioAtribuicaoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactory;
