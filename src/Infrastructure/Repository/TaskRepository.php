@@ -2,30 +2,30 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Model\Projeto;
-use App\Domain\Repository\ProjetoRepositoryInterface;
+use App\Domain\Model\Task;
+use App\Domain\Repository\TaskRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class ProjetoRepository
+ * Class TaskRepository
  * @package App\Infrastructure\Repository
  */
-class ProjetoRepository extends ServiceEntityRepository implements ProjetoRepositoryInterface
+class TaskRepository extends ServiceEntityRepository implements TaskRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Projeto::class);
+        parent::__construct($registry, Task::class);
     }
 
     /**
-     * @param Projeto $projeto
+     * @param Task $task
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function salvar(Projeto $projeto): void
+    public function salvar(Task $task): void
     {
-        $this->getEntityManager()->persist($projeto);
+        $this->getEntityManager()->persist($task);
         $this->getEntityManager()->flush();
     }
 

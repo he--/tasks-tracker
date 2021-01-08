@@ -7,6 +7,7 @@ use App\Domain\Model\Projeto;
 use App\Domain\Model\Status;
 use App\Domain\Model\Task;
 use App\Domain\Model\UsuarioAtribuicao;
+use \App\Domain\Services\TaskService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,18 +15,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/task")
+ * @Route("/tasks")
  */
 class TaskController extends AbstractController
 {
+    private TaskService $taskService;
+
+    public function __construct(TaskService $taskService)
+    {
+        $this->taskService = $taskService;
+    }
 
     /**
-     * @Route("/usuario/{id}")
+     * @Route("/listar", name="task_listar")
      */
-    public function listTasks()
+    public function listarTasks()
     {
+        $tasks = $this->taskService->listar();
 
-
+        return $this->render('lista-tasks.html.twig', [
+            'tasks' => $tasks
+        ]);
     }
 
     /**
@@ -100,11 +110,12 @@ class TaskController extends AbstractController
 
             $this->addFlash('success','Task Cadastrada com sucesso');
 
-            return $this->redirect('/usuario/tasks');
+            return $this->redirect('/tasks/listar');
         }
 
         return $this->render('novo-task.html.twig', [
-            'form' => $form->createView(), 'projeto' => $task->getProjeto()
+            'form' => $form->createView(),
+            'projeto' => $task->getProjeto()
         ]);
     }
 

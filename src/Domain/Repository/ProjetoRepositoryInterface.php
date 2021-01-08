@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Domain\Repository;
+
+use \App\Domain\Model\Projeto;
 
 /**
  * Class ProjetoRepositoryInterface
- * @package App\Domain\Model
+ * @package App\Domain\Repository
  */
 interface ProjetoRepositoryInterface
 {

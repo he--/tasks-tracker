@@ -84,17 +84,32 @@
                 </div>
             </div>
         </li>
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTask"
+               aria-expanded="true" aria-controls="collapseTask">
+                <i class="fas fa-fw fa-tasks"></i>
+                <span>Task</span>
+            </a>
+            <div id="collapseTask" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ path('task_listar') }}">Listar</a>
+                    <a class="collapse-item" href="utilities-border.html">Cadastrar</a>
+                </div>
+            </div>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
 
-        <!-- Nav Item - Charts -->
+        {#<!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link"  href="{{ path('usuario_tasks') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Minhas Tasks</span></a>
-        </li>
+        </li>#}
 
 
     </ul>

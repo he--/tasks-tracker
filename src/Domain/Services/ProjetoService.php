@@ -3,7 +3,7 @@
 namespace App\Domain\Services;
 
 use App\Domain\Model\Projeto;
-use App\Domain\Model\ProjetoRepositoryInterface;
+use App\Domain\Repository\ProjetoRepositoryInterface;
 
 /**
  * Class ProjetoService
