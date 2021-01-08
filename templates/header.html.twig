@@ -85,6 +85,20 @@
             </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatus"
+               aria-expanded="true" aria-controls="collapseStatus">
+                <i class="fas fa-fw fa-tag"></i>
+                <span>Status</span>
+            </a>
+            <div id="collapseStatus" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ path('status_listar') }}">Listar Status</a>
+                    <a class="collapse-item" href="{{ path('status_cadastrar') }}">Cadastrar novo Status</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 

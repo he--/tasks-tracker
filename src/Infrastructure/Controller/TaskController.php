@@ -11,7 +11,6 @@ use \App\Domain\Services\TaskService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -94,10 +93,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted()) {
             $task =  $form->getData();
             $task->setProjeto($projeto);
-            $doctrine = $this->getDoctrine()->getManager();
-
-            $doctrine->persist($task);
-            $doctrine->flush();
+            $this->taskService->salvar($task);
 
             $this->addFlash('success','Task Cadastrada com sucesso');
 
@@ -121,12 +117,9 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted()) {
             $task =  $form->getData();
-            $doctrine = $this->getDoctrine()->getManager();
+            $this->taskService->salvar($task);
 
-            $doctrine->persist($task);
-            $doctrine->flush();
-
-            $this->addFlash('success','Task Cadastrada com sucesso');
+            $this->addFlash('success','Task alterada com sucesso');
 
             return $this->redirect('/tasks/projeto/' . $task->getProjeto()->getId());
         }
