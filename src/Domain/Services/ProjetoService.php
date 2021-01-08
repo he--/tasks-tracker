@@ -41,4 +41,12 @@ class ProjetoService
     {
         return $this->projetoRepository->listar();
     }
+
+    /**
+     * @return array
+     */
+    public function getNumroDeProjetos(): int
+    {
+        return $this->projetoRepository->getNumeroProjetos();
+    }
 }
