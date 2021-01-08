@@ -12,7 +12,7 @@
                                             <th>Email</th>
                                             <th>roles</th>
                                             <th>Password</th>
-                                            <th>Visualizar</th>
+{#                                            <th>Visualizar</th>#}
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -22,7 +22,7 @@
                                             <th>Email</th>
                                             <th>roles</th>
                                             <th>Password</th>
-                                            <th>Visualizar</th>
+{#                                            <th>Visualizar</th>#}
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -32,11 +32,11 @@
                                             <td>{{ usuario.email }}</td>
                                             <td>{{ usuario.rolesString }}</td>
                                             <td> *********** </td>
-                                            <td>
-                                                <a href="visualizar" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
+                                            {#<td>
+                                                <a href="visualizar" class="btn btn-info btn-circle btn-sm">
+                                                    <i class="fas fa-eye"></i>
                                                 </a>
-                                            </td>
+                                            </td>#}
                                         </tr>
                                    {% endfor %}
                                     </tbody>

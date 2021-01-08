@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Repository;
 
 use App\Domain\Model\Projeto;
-use App\Domain\Model\ProjetoRepositoryInterface;
+use App\Domain\Repository\ProjetoRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

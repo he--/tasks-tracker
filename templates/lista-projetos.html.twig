@@ -33,9 +33,12 @@
                                             <td>{{ projeto.descricao }}</td>
                                             <td>{{ projeto.gerente }}</td>
                                             <td>{{ projeto.dtCadastro| date("m/d/Y") }}</td>
-                                            <td>
-                                                <a href="editar/{{ projeto.id }}" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-check"></i>
+                                            <td style="width: 125px">
+                                                <a href="{{ path('task_projeto_listar', {'projeto': projeto.id}) }}" class="btn btn-info btn-circle btn-sm">
+                                                    <i class="fas fa-tasks"></i>
+                                                </a>
+                                                <a href="editar/{{ projeto.id }}" class="btn btn-info btn-circle btn-sm">
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="{{ path('visualizar_projeto', {'projeto': projeto.id}) }}" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
