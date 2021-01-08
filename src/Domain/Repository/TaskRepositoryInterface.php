@@ -16,4 +16,6 @@ interface TaskRepositoryInterface
     public function listar(): array;
 
     public function listarPorProjeto(Projeto $projeto);
+
+    public function deletar(Task $task): void;
 }

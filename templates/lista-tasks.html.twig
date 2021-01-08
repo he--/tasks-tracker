@@ -1,73 +1,79 @@
 {% include 'header.html.twig' %}
 
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de Tasks</h6>
-                            <p><b>Projeto</b>: {{ projeto.nome }}</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>Projeto</th>
-                                            <th>Status</th>
-                                            <th>Data Cadastro</th>
-                                            <th>Data Conclusão</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descricao</th>
-                                            <th>Projeto</th>
-                                            <th>Status</th>
-                                            <th>Data Cadastro</th>
-                                            <th>Data Conclusão</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    {% for task in tasks %}
-                                        {% if task.status.id == 1  %}
-                                            <tr bgcolor="#ff9" >
-                                        {% elseif task.status.id == 2  %}
-                                            <tr bgcolor="#6ff" >
-                                        {% elseif task.status.id == 3 %}
-                                            <tr bgcolor="#f66" >
-                                        {% elseif task.status.id == 4  %}
-                                            <tr bgcolor="#6f6" >
-                                        {% else %}
-                                            <tr>
-                                        {% endif %}
-                                            <td>{{ task.nome }}</td>
-                                            <td>{{ task.descricao }}</td>
-                                            <td>{{ task.projeto.nome }}</td>
-                                            <td>{{ task.status.descricao }}</td>
-                                            <td>{{ task.dtCadastro| date("m/d/Y") }}</td>
-                                            <td>{{ task.dtConclusao| date("m/d/Y") }}</td>
-                                            <td>
-                                                <a href="{{ path('task_editar', {'task': task.id}) }}" class="btn btn-info btn-circle btn-sm">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                {#<a href="{{ path('visualizar_task', {'task': task.id}) }}" class="btn btn-danger btn-circle btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>#}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Lista de Tasks</h6>
+            <p><b>Projeto</b>: {{ projeto.nome }}</p>
+        </div>
+        <div class="card-body">
+            <div class="float-right mb-2">
+                <a href="{{ path('task_cadastrar', {'projeto': projeto.id}) }}" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Cadastrar</span>
+                </a>
             </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descricao</th>
+                            <th>Projeto</th>
+                            <th>Status</th>
+                            <th>Data Cadastro</th>
+                            <th>Data Conclusão</th>
+                            <th style="width: 90px"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descricao</th>
+                            <th>Projeto</th>
+                            <th>Status</th>
+                            <th>Data Cadastro</th>
+                            <th>Data Conclusão</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for task in tasks %}
+                        {% if task.status.id == 1  %}
+                            <tr bgcolor="#ff9" >
+                        {% elseif task.status.id == 2  %}
+                            <tr bgcolor="#6ff" >
+                        {% elseif task.status.id == 3 %}
+                            <tr bgcolor="#f66" >
+                        {% elseif task.status.id == 4  %}
+                            <tr bgcolor="#6f6" >
+                        {% else %}
+                            <tr>
+                        {% endif %}
+                            <td>{{ task.nome }}</td>
+                            <td>{{ task.descricao }}</td>
+                            <td>{{ task.projeto.nome }}</td>
+                            <td>{{ task.status.descricao }}</td>
+                            <td>{{ task.dtCadastro| date("m/d/Y") }}</td>
+                            <td>{{ task.dtConclusao| date("m/d/Y") }}</td>
+                            <td>
+                                <a href="{{ path('task_editar', {'task': task.id}) }}" class="btn btn-info btn-circle btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{{ path('task_deletar', {'task': task.id}) }}" class="btn btn-danger btn-circle btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 {% include 'footer.html.twig' %}

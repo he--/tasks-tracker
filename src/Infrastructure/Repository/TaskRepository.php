@@ -47,4 +47,10 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
                 ->getQuery()
                 ->getResult();
     }
+
+    public function deletar(Task $task): void
+    {
+        $this->getEntityManager()->remove($task);
+        $this->getEntityManager()->flush();
+    }
 }

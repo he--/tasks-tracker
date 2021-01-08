@@ -47,4 +47,9 @@ class TaskService
     {
         return $this->taskRepository->listarPorProjeto($projeto);
     }
+
+    public function deletar(Task $task): void
+    {
+        $this->taskRepository->deletar($task);
+    }
 }

@@ -82,7 +82,9 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/cadastrar/{projeto}", name="cadastrar_task", methods={"GET", "POST"})
+     * @Route("/cadastrar/{projeto}", name="task_cadastrar", methods={"GET", "POST"})
+     * @ParamConverter("projeto", class="App\Domain\Model\Projeto")
+     * @param Projeto $projeto
      */
     public function cadastrar(Projeto $projeto, Request $request)
     {
@@ -99,11 +101,12 @@ class TaskController extends AbstractController
 
             $this->addFlash('success','Task Cadastrada com sucesso');
 
-            return $this->redirect('/projetos/visualizar/'.$projeto->getId());
+            return $this->redirect('/tasks/projeto/'.$projeto->getId());
         }
 
         return $this->render('novo-task.html.twig', [
-            'form' => $form->createView(), 'projeto' => $projeto
+            'form' => $form->createView(),
+            'projeto' => $projeto
         ]);
     }
 
@@ -125,7 +128,7 @@ class TaskController extends AbstractController
 
             $this->addFlash('success','Task Cadastrada com sucesso');
 
-            return $this->redirect('/tasks/listar');
+            return $this->redirect('/tasks/projeto/' . $task->getProjeto()->getId());
         }
 
         return $this->render('novo-task.html.twig', [
@@ -135,21 +138,17 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/deletar/{atribuicao}", name="deletar_task", methods={"GET", "POST"})
-     * @ParamConverter("atribuicao", class="App\Domain\Model\UsuarioAtribuicao")
+     * @Route("/deletar/{task}", name="task_deletar", methods={"GET", "POST"})
+     * @ParamConverter("task", class="App\Domain\Model\Task")
      */
-    public function deletar(UsuarioAtribuicao $atribuicao)
+    public function deletar(Task $task)
     {
-        $doctrine = $this->getDoctrine()->getManager();
-        $task = $atribuicao->getTask();
-
-        $doctrine->remove($atribuicao);
-        $doctrine->remove($task);
-        $doctrine->flush();
+        $idProjeto = $task->getProjeto()->getId();
+        $this->taskService->deletar($task);
 
         $this->addFlash('success','Task Deletada com sucesso');
 
-        return $this->redirect('/usuario/tasks');
+        return $this->redirect('/tasks/projeto/' . $idProjeto);
     }
 
 }
